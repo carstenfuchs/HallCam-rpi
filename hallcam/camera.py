@@ -1,13 +1,14 @@
 from datetime import datetime
 from time import sleep
-from common import get_pic_stem_from_data
+
+from hallcam.common import get_pic_stem_from_data
 
 try:
-    from picamera import PiCamera, Color
+    from hallcam.picamera import PiCamera, Color
     is_raspberrypi = True
 except ImportError:
     # In the absence of the PiCamera, we need to create dummy pictures.
-    from common import create_simple_image
+    from hallcam.common import create_simple_image
     is_raspberrypi = False
 
 

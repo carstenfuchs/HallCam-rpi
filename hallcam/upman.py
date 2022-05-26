@@ -2,7 +2,7 @@ import requests, socket
 from io import BytesIO
 from pathlib import Path
 
-from common import create_simple_image
+from hallcam.common import create_simple_image
 
 
 class UploadManager:

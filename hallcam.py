@@ -1,14 +1,14 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 import os
 import shutil, socket, sys
 from datetime import datetime, timedelta
 from time import sleep
 from pathlib import Path
 
-import settings
-from camera import get_camera
-from common import fmt_bytes, get_data_from_pic_stem, get_score
-from upman import UploadManager
+from hallcam import settings
+from hallcam.camera import get_camera
+from hallcam.common import fmt_bytes, get_data_from_pic_stem, get_score
+from hallcam.upman import UploadManager
 
 
 class Task:
