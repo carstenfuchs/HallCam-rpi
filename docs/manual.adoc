@@ -158,8 +158,8 @@ pi@raspberrypi:~ $ . activate_HallCam_rpi
 pip install wheel   # ?? On Ubuntu only?
 ./patchday
 
-pi@raspberrypi:~ $ cp HallCam/rpi/localconfig.example HallCam/rpi/localconfig.py
-pi@raspberrypi:~ $ nano HallCam/rpi/localconfig.py  # configure with local settings
+pi@raspberrypi:~ $ cp HallCam/rpi/settings.example HallCam/rpi/settings.py
+pi@raspberrypi:~ $ nano HallCam/rpi/settings.py  # configure with local settings
 
 pi@raspberrypi:~/HallCam/rpi $ sudo cp hallcam.service /etc/systemd/system
 pi@raspberrypi:~/HallCam/rpi $ sudo systemctl daemon-reload

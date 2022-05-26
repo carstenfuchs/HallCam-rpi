@@ -5,7 +5,7 @@ from datetime import datetime, timedelta
 from time import sleep
 from pathlib import Path
 
-import localconfig
+import settings
 from camera import get_camera
 from common import fmt_bytes, get_data_from_pic_stem, get_score
 from upman import UploadManager
@@ -113,14 +113,14 @@ class TaskCleanupDisk(Task):
 
 
 def run_camera():
-    access_ok = os.access(localconfig.PICTURES_DIR, os.W_OK)
+    access_ok = os.access(settings.PICTURES_DIR, os.W_OK)
     camera = get_camera()
-    upman = UploadManager(localconfig.UPLOAD_URL, localconfig.UPLOAD_PASSWORD)
+    upman = UploadManager(settings.UPLOAD_URL, settings.UPLOAD_PASSWORD)
 
     print(f"host        {socket.gethostname()}")
     print(f"camera      {camera.__class__}")
-    print(f"save to     {localconfig.PICTURES_DIR} (access {'OK' if access_ok else 'FAILED'})")
-    print(f"upload to   {localconfig.UPLOAD_URL}")
+    print(f"save to     {settings.PICTURES_DIR} (access {'OK' if access_ok else 'FAILED'})")
+    print(f"upload to   {settings.UPLOAD_URL}")
 
     camera.start_preview()
 
@@ -128,7 +128,7 @@ def run_camera():
         TaskEvery5Minutes(),
         TaskEveryFullHour(),
       # TaskExposureMonitor(),
-        TaskCleanupDisk(localconfig.PICTURES_DIR),
+        TaskCleanupDisk(settings.PICTURES_DIR),
     ]
 
     print("\nEntering main loop, press CTRL+C to exit.")
@@ -143,7 +143,7 @@ def run_camera():
                 importance = max(importance, task.is_due(prev_dt, curr_dt))
 
             if importance > 0:
-                filename = camera.capture_picture(curr_dt, importance, localconfig.PICTURES_DIR)
+                filename = camera.capture_picture(curr_dt, importance, settings.PICTURES_DIR)
                 upman.upload(filename)
 
             prev_dt = curr_dt
