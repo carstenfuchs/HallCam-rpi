@@ -64,8 +64,6 @@ if __name__ == "__main__":
     # run(["svn", "update"])
     run(["pip", "install", "-q", "-r", "requirements-other.txt"])
 
-    run(["sphinx-build", "-n", "-b", "html", "docs/", "docs/_build/html/"])
-
     # Stelle sicher, dass das System die richtige Uhrzeit verwendet.
     run(["timedatectl", "show", "--property", "CanNTP",          "--value"], output_callback=output_callback_check_yes, quiet=True)
     run(["timedatectl", "show", "--property", "NTP",             "--value"], output_callback=output_callback_check_yes, quiet=True)
